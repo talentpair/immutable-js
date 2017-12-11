@@ -4640,31 +4640,31 @@
   IterablePrototype.contains = IterablePrototype.includes;
 
   // Temporary warning about using length
-  (function () {
-    try {
-      Object.defineProperty(IterablePrototype, 'length', {
-        get: function () {
-          if (!Iterable.noLengthWarning) {
-            var stack;
-            try {
-              throw new Error();
-            } catch (error) {
-              stack = error.stack;
-            }
-            if (stack.indexOf('_wrapObject') === -1) {
-              console && console.warn && console.warn(
-                'iterable.length has been deprecated, '+
-                'use iterable.size or iterable.count(). '+
-                'This warning will become a silent error in a future version. ' +
-                stack
-              );
-              return this.size;
-            }
-          }
-        }
-      });
-    } catch (e) {}
-  })();
+  // (function () {
+  //   try {
+  //     Object.defineProperty(IterablePrototype, 'length', {
+  //       get: function () {
+  //         if (!Iterable.noLengthWarning) {
+  //           var stack;
+  //           try {
+  //             throw new Error();
+  //           } catch (error) {
+  //             stack = error.stack;
+  //           }
+  //           if (stack.indexOf('_wrapObject') === -1) {
+  //             console && console.warn && console.warn(
+  //               'iterable.length has been deprecated, '+
+  //               'use iterable.size or iterable.count(). '+
+  //               'This warning will become a silent error in a future version. ' +
+  //               stack
+  //             );
+  //             return this.size;
+  //           }
+  //         }
+  //       }
+  //     });
+  //   } catch (e) {}
+  // })();
 
 
 
@@ -4748,9 +4748,6 @@
     lastIndexOf: function(searchValue) {
       var key = this.toKeyedSeq().reverse().keyOf(searchValue);
       return key === undefined ? -1 : key;
-
-      // var index =
-      // return this.toSeq().reverse().indexOf(searchValue);
     },
 
     reverse: function() {
